@@ -1,4 +1,4 @@
-FRONTEND DEVELOPMENT WITH CANCER
+FRONTEND DEVELOPMENT IN CANCER
 
 Recent advancements in cancer research have highlighted the crucial role of computational methods in understanding the biology of cancer and helps in accelerating clinical research and studies (Jiang et al., 2022). This is where Frontend development comes in.
 
