@@ -1,3 +1,5 @@
+FRONTEND DEVELOPMENT WITH CANCER
+
 Recent advancements in cancer research have highlighted the crucial role of computational methods in understanding the biology of cancer and helps in accelerating clinical research and studies (Jiang et al., 2022). This is where Frontend development comes in.
 
 Frontend development is gradually becoming a vital tool in cancer research for aiding in the diagnosis and treatment of cancer patients. This play a crucial role in cancer research, particularly in contributing to data visualization, public outreach, and patients’ engagement. Genetics plays a significant part in most cancers, necessitating the use of computer science techniques to analyze complex genetic data (Abdelrahman Hosny, 2017).
