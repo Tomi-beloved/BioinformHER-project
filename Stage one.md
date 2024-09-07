@@ -37,3 +37,4 @@ Jesse Frank Juma
 Slack ID: @Jesse
 
 Video link.
+https://www.linkedin.com/posts/tomilayo-fadairo-aa4518248_cancerresearch-tcgaplot-rpackage-activity-7238311181029937152--nWc?utm_source=share&utm_medium=member_ios
