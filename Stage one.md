@@ -21,19 +21,19 @@ Liao, C., & Wang, X. (2023). TCGAplot: An R package for integrative pan-cancer a
 **Contributors: Team goal-getters**
 
 Tomilayo Oluwaseun Fadairo  - Team Leader
-
+email: oluwaseuntomilayo9@gmail.com
 Slack ID: @TomiDbeloved
 
 Akinjide Samuel Anifowose
-
+email: anifowosesamuel54@gmail.com 
 Slack ID: @SammieAA
 
 Opeoluwa Shodipe
-
+email: opeoluwashodipe94@gmail.com
 Slack ID: @Eaden
 
 Jesse Frank Juma
-
+email: jessefrank104@gmail.com
 Slack ID: @Jesse
 
 Video link.
