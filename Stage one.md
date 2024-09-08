@@ -1,5 +1,5 @@
-**TCGAplot: an R package for integrative pan-cancer analysis and visualization of TCGA multi-omics data
-**
+TCGAplot: an R package for integrative pan-cancer analysis and visualization of TCGA multi-omics data
+
 The TCGAplot R package tool is designed to facilitate comprehensive analysis and visualization of multi-omics data derived from The Cancer Genome Atlas (TCGA), which is one of the largest and most comprehensive cancer genomics databases available. it includes 33 distinct cancer types for over 20,000 samples, covering exome, RNA, microRNA, copy number variation, proteome, and methylome sequencing (Cancer Genome Atlas Research, 2013).
 
 The TCGAplot package's user-friendly interface suits both experienced bioinformaticians and scientists. It allows researchers to analyze complex and massive cancer data sets with a broad range of functionalities offered by this tool. It makes cancer data analysis and visualization easier to carry out and more readily accessible to promote collaboration and innovation in cancer research. The TCGAplot also examine gene expression across different cancer types and identifies relationships between genes and other immune cell activity. Users can identify similarities and differences in genomic changes among different cancers by doing integrative analyses with the TCGAplot (He, 2023); It also analyzes survival rates by performing a well-user-defined function.
