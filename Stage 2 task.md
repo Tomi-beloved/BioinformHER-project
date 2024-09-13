@@ -1,189 +1,127 @@
-\# BioCal Calculator User Guide
+# **BioCal CALCULATOR USER GUIDE**
 
-\## Overview
+Welcome to the BioCal Calculator, a powerful and user-friendly web-based platform designed to assist laboratory scientists with common reagent preparation calculations. Developed as part of a HackBio internship program, the BioCal Calculator aims to streamline daily tasks, reduce errors, and enhance efficiency in scientific research.
 
-The project BioCal is a powerful and user-friendly web-based platform designed to assist laboratory scientists with common reagent preparation calculations. This was developed as part of a HackBio internship program, the BioCal Calculator aims to streamline daily tasks, reduce errors, and enhance efficiency in scientific research.
+This user guide will walk you through how to navigate the website, use each calculator, and provide useful resources for researchers and students in the field of bioinformatics.
 
-\---
+---
 
-\## Table of Contents
+## **TABLE OF CONTENTS**
+1. [Home Page](#home-page)
+2. [About Page](#about-page)
+3. [Calculators](#calculators)
+    - [Serial Dilution Calculator](#serial-dilution-calculator)
+    - [Stock Solution Calculator](#stock-solution-calculator)
+    - [Sedimentation Coefficient Calculator](#sedimentation-coefficient-calculator)
+    - [DNA and RNA Concentration Calculator](#dna-and-rna-concentration-calculator)
+4. [Contacts](#contacts)
+5. [Social Media & GitHub Links](#social-media--github-links)
+6. [Copyright Information](#copyright-information)
 
-1\. \[Home Page]\(#HomePage)
+---
 
-2\. \[About]\(#About)
+## **HOME PAGE**
 
-3\. \[Calculators]\(#Calculators)
+### **Logo**:
+The BioCal Calculator features a clear and attractive logo that reflects its purpose—offering streamlined calculations for laboratory applications. This logo is prominently displayed at the top of the webpage.
 
-\- \*\*Serial Dilution Calculator\*\*
+### **HackBio Badge**:
+A small HackBio logo is placed on the page to acknowledge the project's origin, initiated as part of the HackBio internship program, linking the project to the broader bioinformatics community.
 
-\- \*\*Stock Solution Calculator\*\*
+---
 
-\- \*\*Sedimentation Coefficient Calculator\*\*
+## **ABOUT PAGE**
 
-\- \*\*DNA and RNA Concentration Calculator\*\*
+The About page details the origins and goals of the BioCal Calculator project. It provides context for the platform’s development and purpose.
 
-5\. \[Contacts]\(#Calculators)
+### **Project Origin**:
+The BioCal Calculator project was initiated as part of the HackBio internship program, where participants were tasked with developing R Shiny dashboards for bioinformatics applications. The project aims to simplify reagent preparation tasks for laboratory scientists.
 
-6\. \[Social Media & Github Links]\(#SocialMedia\&GitubLinks)
+### **Project Goals**:
+- To enhance proficiency in using R Shiny for building interactive web applications.
+- To simplify reagent preparation calculations, saving time and effort for researchers.
+- To contribute to the advancement of bioinformatics through accessible tools.
+- To develop innovative solutions to real-world bioinformatics problems.
 
-7\. \[Copyright Information]\(#CopyrightInformation) 
+### **Benefits**:
+- **Efficiency**: Streamlines daily calculations in the lab, saving valuable time.
+- **Accuracy**: Minimizes calculation errors with automated tools.
+- **Convenience**: Offers a user-friendly web-based platform.
+- **Productivity**: Allows researchers to focus on critical scientific tasks by automating routine calculations.
 
-\---
+---
 
-\## Home Page
+## **CALCULATORS**
 
-\### Logo:
+The BioCal Calculator includes various tools to assist with common laboratory calculations.
 
-The BioCal Calculator features a clear and attractive logo that reflects its purpose—offering streamlined calculations for laboratory applications. This logo is prominently displayed at the top of the webpage, providing instant recognition for users.
+### **Serial Dilution Calculator**
+This tool calculates the volumes needed for specific concentrations via serial dilutions.
 
-\### HackBio Badge:
+**How to Use**:
+1. Enter the initial concentration of the stock solution.
+2. Specify the desired final concentration.
+3. Input the dilution factor.
+4. Enter the total volume for the dilution.
+5. Click **Calculate** to display the volume of stock solution needed.
 
-In one corner of the page, a small \*\*HackBio\*\* logo is placed to acknowledge the project's origin. The BioCal Calculator was initiated as part of the HackBio internship program, showcasing its connection to the broader bioinformatics community.
+**Example**:  
+To create a 1:10 dilution from a 100 mM stock solution to achieve 10 mM, input the necessary values, and the calculator will display the required volumes.
 
-\---
+### **Stock Solution Calculator**
+This tool helps calculate the volume of stock solution required for a specific final concentration in a given volume.
 
-\## About Page
+**How to Use**:
+1. Enter the stock solution concentration.
+2. Input the final desired concentration.
+3. Specify the final volume needed.
+4. Click **Calculate** for the results.
 
-The About page provides detailed insights into the \*\*BioCal Calculator\*\* project, including its origins and goals.
+**Example**:  
+To prepare 500 mL of a 0.1 M solution from a 1 M stock solution, input the stock concentration, final concentration, and total volume. The calculator will provide the required values.
 
-\### Project Origin:
+### **Sedimentation Coefficient Calculator**
+This calculator determines sedimentation coefficients based on molecular weight and density.
 
-The BioCal Calculator project was initiated during the \*\*HackBio internship program\*\*, where participants were tasked with creating \*\*R Shiny dashboards\*\* for bioinformatics applications. The goal was to develop a practical, user-friendly tool that would simplify common reagent preparation tasks for laboratory scientists. This project aims to positively impact the bioinformatics community by contributing to the advancement of scientific research.
+**How to Use**:
+1. Enter the molecular weight.
+2. Specify the solvent's density.
+3. Input any additional required parameters.
+4. Click **Calculate** for the sedimentation coefficient.
 
-\### Project Goals:
+### **DNA and RNA Concentration Calculator**
+This tool calculates the concentration of DNA or RNA based on absorbance values.
 
-\- Enhance proficiency in building \*\*interactive web applications\*\* using \*\*R Shiny\*\*.
+**How to Use**:
+1. Input the absorbance (A260) value.
+2. Specify the dilution factor, if applicable.
+3. Enter the pathlength of the cuvette.
+4. Click **Calculate** for the final concentration.
 
-\- Create a tool to simplify reagent preparation calculations, saving time and effort for researchers.
+---
 
-\- Promote bioinformatics by offering a valuable resource for researchers and students.
-
-\- Demonstrate problem-solving skills by identifying real-world issues and providing innovative bioinformatics solutions.
-
-\### Benefits:
-
-\- \*\*Streamlined Calculations\*\*: Simplify daily lab calculations, saving researchers valuable time and resources.
-
-\- \*\*Increased Accuracy\*\*: Provide automated and reliable tools to enhance calculation accuracy, leading to more reproducible results.
-
-\- \*\*User-Friendly\*\*: Offer a convenient, web-based platform that doesn't require complex software or coding skills.
-
-\- \*\*Efficiency\*\*: Automate repeated calculations, allowing researchers to focus on more critical scientific tasks.
-
-\---
-
-\## \*\*CALCULATORS\*\*
-
-\### \*\*Serial Dilution Calculator\*\*
-
-This tool allows you to calculate the volumes needed to achieve specific concentrations through serial dilutions.
-
-\*\*How to Use\*\*:
-
-1\. Enter the Initial Concentration of the stock solution.
-
-2\. Specify the Desired Final Concentration.
-
-3\. Input the Dilution Factor (e.g., 1:10).
-
-4\. Enter the Total Volume required for the dilution.
-
-5\. Click \*\*Calculate\*\* to display the volume of stock solution needed at each dilution step.
-
-\*\*Example\*\*:  
-
-You want to create a series of 1:10 dilutions from a 100 mM stock solution to achieve 10mM. Input 1:10 as the dilution factor, 100mM as the initial concentration, 10mM as the final concentration, and 1mL as the total volume. Click \*\*Calculate\*\*, and the calculator will display the volume of stock solution needed at each dilution step.
-
-\---
-
-\### \*\*Stock Solution Calculator\*\*
-
-This calculator helps determine the volume of a stock solution required to achieve a specific final concentration in a given volume.
-
-\*\*How to Use\*\*:
-
-1\. Enter the Concentration of the Stock Solution.
-
-2\. Input the Final Desired Concentration.
-
-3\. Specify the Final Volume needed.
-
-4\. Click \*\*Calculate\*\* to get the volume of the stock solution needed, along with the amount of solvent required.
-
-\*\*Example\*\*:  
-
-To prepare 500 mL of a 0.1 M solution from a 1 M stock solution, input 1 M in the stock concentration field, 0.1 M in the final concentration field, and 500 mL in the total volume field. Click \*\*Calculate\*\*, and the calculator will show the volume of stock solution to use and how much solvent to add.
-
-\---
-
-\### \*\*Sedimentation Coefficient Calculator\*\*
-
-This tool calculates sedimentation coefficients based on molecular weight and density.
-
-\*\*How to Use\*\*:
-
-1\. Enter the Molecular Weight of the molecule.
-
-2\. Specify the Density of the Solvent.
-
-3\. Input any additional parameters (e.g., temperature or viscosity).
-
-4\. Click \*\*Calculate\*\* to display the sedimentation coefficient.
-
-\*\*Example\*\*:  
-
-If a macromolecule has a molecular weight of 300 kDa and moves at a velocity of 10 cm/s under 100,000 x g, the calculator will determine the sedimentation coefficient.
-
-\---
-
-\### \*\*DNA and RNA Concentration Calculator\*\*
-
-This calculator helps determine the concentration of DNA and RNA based on absorbance values.
-
-\*\*How to Use\*\*:
-
-1\. Input the Absorbance (A260) for the nucleic acid.
-
-2\. Specify the Dilution Factor, if applicable.
-
-3\. Enter the Pathlength of the cuvette used in spectrophotometry.
-
-4\. Click \*\*Calculate\*\* to determine the final DNA or RNA concentration in micrograms per milliliter (µg/mL).
-
-\*\*Example\*\*:  
-
-If you have an A260 reading of 0.8 and a dilution factor of 2, input 0.8 in the absorbance field and 2 in the dilution factor field. Click \*\*Calculate\*\* to get the DNA or RNA concentration in your sample.
-
-\---
-
-\## \*\*Contacts\*\*
+## **CONTACTS**
 
 If you have any questions or feedback, feel free to contact the contributors:
 
-\- \*\*Tomilayo Oluwaseun Fadairo\*\*: \[Oluwaseuntomilayo9\@gmail.com]\(mailto:Oluwaseuntomilayo9\@gmail.com)
+- **Tomilayo Oluwaseun Fadairo**: [Oluwaseuntomilayo9@gmail.com](mailto:Oluwaseuntomilayo9@gmail.com)
+- **Akinjide Samuel Anifowose**: [Anifowosesamuel54@gmail.com](mailto:Anifowosesamuel54@gmail.com)
+- **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
+- **Ndubueze Ngozika Abigail**: [ndubungoabi2002@gmail.com](mailto:ndubungoabi2002@gmail.com)
+- **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
 
-\- \*\*Akinjide Samuel Anifowose\*\*: \[Anifowosesamuel54\@gmail.com]\(mailto:Anifowosesamuel54\@gmail.com)
+---
 
-\- \*\*Opeoluwa Shodipe\*\*: \[Opeoluwashodipe94\@gmail.com]\(mailto:Opeoluwashodipe94\@gmail.com)
+## **SOCIAL MEDIA & GITHUB LINKS**
 
-\- \*\*Ndubueze Ngozika Abigail\*\*: \[ndubungoabi2002\@gmail.com]\(mailto:ndubungoabi2002\@gmail.com)
+Stay updated with the BioCal Calculator project and other exciting endeavors by connecting with us:
 
-\- \*\*Nwankwo Peace Nneka\*\*: \[nnekapeace85\@gmail.com]\(mailto:nnekapeace85\@gmail.com)
+- **LinkedIn**: [Your LinkedIn Profile](#)
+- **X (formerly Twitter)**: [Your X Profile](#)
+- **GitHub Repository**: [Link to GitHub Repository](#)
 
-\---
+---
 
-\## \*\*Social Media & GitHub Links\*\*
+## **COPYRIGHT INFORMATION**
 
-Stay updated with the \*\*BioCal Calculator\*\* project and engage with the bioinformatics community:
-
-\- \*\*LinkedIn\*\*: \[Your LinkedIn Profile]\(#)
-
-\- \*\*X (formerly Twitter)\*\*: \[Your X Profile]\(#)
-
-\- \*\*GitHub Repository\*\*: \[Link to the GitHub Repository]\(#)
-
-\---
-
-\## \*\*Copyright Information\*\*
-
-The \*\*Biocal Calculator\*\* is subject to copyright laws protecting the intellectual property of its creators. For commercial use or distribution of this tool, please seek legal permission or licensing agreements.
+The BioCal Calculator is subject to copyright laws protecting the intellectual property of its creators. For commercial use or distribution, please seek legal permission or licensing agreements.
