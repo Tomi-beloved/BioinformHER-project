@@ -4,9 +4,9 @@ The reasoning for each of the four calculators in **R Shiny** and the underlying
 
  
 
-** 1. Stock Solution Dilution Calculation**
+**1. Stock Solution Dilution Calculation**
 
-** Mathematical Formula** The following formula controls the dilution of the stock solution: C1 times V1 equals C2 times V2 Where: -&#x20;
+**Mathematical Formula** The following formula controls the dilution of the stock solution: C1 times V1 equals C2 times V2 Where: -&#x20;
 
 C1 = Concentration of stock (known)
 
@@ -36,21 +36,21 @@ The unknown volume can be solved by rearranging this as follows: 、V1 = \dfrac{
 
 **3. DNA/RNA Concentration Calculation**
 
-**Mathematical Formula **Utilizing conversion factors unique to each nucleic acid, the absorbance at 260 nm is used to compute the concentration of DNA or RNA: \text{Absorbance} \× \text{Conversion Factor} = \text{Concentration} - 50 ng/μL is the DNA conversion factor per A260. - 40 ng/μL is the RNA conversion factor according to A260 R Shiny Implementation 1. Inputs: - Absorbance: Numerical input for absorbance at 260 nm.-****
+**Mathematical Formula **Utilizing conversion factors unique to each nucleic acid, the absorbance at 260 nm is used to compute the concentration of DNA or RNA: \text{Absorbance} \× \text{Conversion Factor} = \text{Concentration} - 50 ng/μL is the DNA conversion factor per A260. - 40 ng/μL is the RNA conversion factor according to A260 R Shiny Im'plementation 1. Inputs: - Absorbance: Numerical input for absorbance at 260 nm.-****
 
 **Type:** Selection input for RNA and DNA selection.&#x20;
 
 **Reactive Calculation:** - Based on the selected type, define a reactive function that calculates the concentration.{}{r concentration {-reactive({    absorbance {-input$absorbance    conversion\_factor {-if (input$type == "DNA") 50 else 40     conc {-absorbance  conversion\_factor    return(conc) })
 
-**Results. Text: **Present the determined concentration.
+**Results**. Text: **Present the determined concentration.
 
-**Plot: **Make a bar graph to show the determined concentration.{{{r output$concentration\_result \\- renderText({    paste("Concentration:", round(concentration(), 2), "ng/μL")  })output$concentration\_plot \\- renderPlot({ barplot(concentration(), names.arg = input$type, col = "green", ylab = "Concentration (ng/μL)") }){\~ ---
+**Plot**: **Make a bar graph to show the determined concentration.{{{r output$concentration\_result \\- renderText({    paste("Concentration:", round(concentration(), 2), "ng/μL")  })output$concentration\_plot \\- renderPlot({ barplot(concentration(), names.arg = input$type, col = "green", ylab = "Concentration (ng/μL)") }){\~ ---
 
  
 
 **4. Sedimentation Coefficient Calculation**
 
-**Mathematical Formula **The formula for calculating the sedimentation coefficient is ခs = \dfrac{v}{\omega² \× r}. Where: - πs = Coefficient of sedimentation (in Svedberg units) - v = Velocity of sedimentation (m/s) Angular velocity (rad/s) = π\omega - ခr= Radial length (meters) R Shiny Implementation****
+**Mathematical Formula** The formula for calculating the sedimentation coefficient is ခs = \dfrac{v}{\omega² \× r}. Where: - πs = Coefficient of sedimentation (in Svedberg units) - v = Velocity of sedimentation (m/s) Angular velocity (rad/s) = π\omega - ခr= Radial length (meters) R Shiny Implementation****
 
 **Inputs:v:** Velocity of sedimentation (a numeric input).- ω: The angle of travel (a numerical input).r: Radial distance (supplied as a number).&#x20;
 
@@ -58,13 +58,13 @@ The unknown volume can be solved by rearranging this as follows: 、V1 = \dfrac{
 
 The sedimentation coefficient is displayed in Text
 
-** Plot: **To illustrate the computed concentration, make a bar graph.Output$concentration\_result {{{r \\- renderText({       paste("Concentration:", round(concentration(), 2), "ng/μL")    })       output$concentration\_plot \\- renderPlot({       barplot(concentration(), names.arg = input$type, col = "green",           ylab = "Concentration (ng/μL)")    }) The formula for calculating the sedimentation coefficient is ခs = \dfrac{v}{\omega^2 \times r}. Where: - πs = Coefficient of sedimentation (in Svedberg units) - v = Velocity of sedimentation (m/s) Angular velocity (rad/s) = π\omega - ခr = Radial length (meters) R Shiny Implementation.
+** Plot**: **To illustrate the computed concentration, make a bar graph.Output$concentration\_result {{{r \\- renderText({       paste("Concentration:", round(concentration(), 2), "ng/μL")    })       output$concentration\_plot \\- renderPlot({       barplot(concentration(), names.arg = input$type, col = "green",           ylab = "Concentration (ng/μL)")    }) The formula for calculating the sedimentation coefficient is ခs = \dfrac{v}{\omega^2 \times r}. Where: - πs = Coefficient of sedimentation (in Svedberg units) - v = Velocity of sedimentation (m/s) Angular velocity (rad/s) = π\omega - ခr = Radial length (meters) R Shiny Implementation.
 
  The first input is the sedimentation velocity (a numerical input denoted as v).- ω: The angle of travel (a numerical input).r: Radial distance (supplied as a number).
 
  
 
-** Reactive Calculation Plot:** Compile the sedimentation coefficient into a bar graph.{{{r  output$sedimentation\_result \\- renderText({     paste("Sedimentation Coefficient:", round(sedimentation\_coefficient(), 6), "Svedberg units")  })            output$sedimentation\_plot \\- renderPlot({        barplot(sedimentation\_coefficient(), names.arg = "Sedimentation Coefficient",** Results: Text:** Present the determined concentration.
+**Reactive Calculation Plot:** Compile the sedimentation coefficient into a bar graph.{{{r  output$sedimentation\_result \\- renderText({     paste("Sedimentation Coefficient:", round(sedimentation\_coefficient(), 6), "Svedberg units")  })            output$sedimentation\_plot \\- renderPlot({        barplot(sedimentation\_coefficient(), names.arg = "Sedimentation Coefficient",** Results: Text:** Present the determined concentration.
 
 **Plot:** Make a bar graph to show the determined concentration.{{{r output$concentration\_result \\- renderText({    paste("Concentration:", round(concentration(), 2), "ng/μL")  })output$concentration\_plot \\- renderPlot({ barplot(concentration(), names.arg = input$type, col = "green", ylab = "Concentration (ng/μL)") }){\~&#x20;
 
@@ -80,7 +80,7 @@ The sedimentation coefficient is displayed in Text
 
  
 
-**Reactive Calculation: **- Establish a reactive function that is used to determine the sedimentation coefficient.{{{r   sedimentation\_coefficient \\- reactive({     v \\- input$velocity      omega \\- input$angular\_velocity              \      \                             s \\- v / (omega²  r)         
+**Reactive Calculation**: **- Establish a reactive function that is used to determine the sedimentation coefficient.{{{r   sedimentation\_coefficient \\- reactive({     v \\- input$velocity      omega \\- input$angular\_velocity              \      \                             s \\- v / (omega²  r)         
 
                                
 
@@ -88,4 +88,4 @@ The sedimentation coefficient is displayed in Text
 
 **Plot:** To see the sedimentation coefficient, make a bar graph.{{{r  output$sedimentation\_result \\- renderText({     paste("Sedimentation Coefficient:", round(sedimentation\_coefficient(), 6), "Svedberg units")  })output$sedimentation\_plot <- renderPlot({ barplot(sedimentation\_coefficient(), names.arg = "Sedimentation Coefficient", col = "purple", ylab = "Coefficient (Svedberg units)") }){\~ --- Extra Implementation Information:A "Print Result" button that enables users to obtain a PDF of the results may be included with each calculator:\[{}{r output$download \\- downloadHandler(}   filename = function() { "results.pdf" },   content = function(file) {         pdf(file)       print(textOutput)      dev.off()    }  ){\~ 2.
 
-** Dynamic Notes Section: **When a user chooses a certain calculator, a dynamic user interface ({uiOutput}) should be used to display instructions.output$notes \\- render {}{rUI({      if (input$calculator == "Stock Solution") {       HTML("Instructions for Stock Solution Calculator...")    } else if (input$calculator == "Serial Dilution") {            HTML("Instructions for Serial Dilution Calculator...")                                                                   
+** Dynamic Notes Section**: **When a user chooses a certain calculator, a dynamic user interface ({uiOutput}) should be used to display instructions.output$notes \\- render {}{rUI({      if (input$calculator == "Stock Solution") {       HTML("Instructions for Stock Solution Calculator...")    } else if (input$calculator == "Serial Dilution") {            HTML("Instructions for Serial Dilution Calculator...")                                                                   
