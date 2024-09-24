@@ -1,5 +1,5 @@
 mkdir Mary
-mkdir biocomputing ; cd biocomputing
+mkdir biocomputing && cd biocomputing
 wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.fna > wildtype.fna  
 wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk > wildtype.gbk
 wget https://raw.githubusercontent.com/josoga2/dataset-repos/main/wildtype.gbk > wildtype.gbk
