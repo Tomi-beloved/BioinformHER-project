@@ -51,13 +51,13 @@ These metrics were summarized in plots and graphs that updated automatically whe
 
 5. **Reporting and Summaries**:
 
-Based on the summary template designed by the AMR epidemiologists, the bioinformaticians implemented an automated report generation feature. However, this feature is only for selected country due to the capacity of the Shiny.io used but the generated report was designed to be downloadable in PDF format, enabling users to easily share or print the data.
+Based on the summary template designed by the AMR epidemiologists, the bioinformaticians implemented an automated report generation feature. However, this feature is only for selected countries due to the capacity of the Shiny.io used but the generated report was designed to be downloadable in PDF format, enabling users to easily share or print the data.
 
 ---
 
 6. **Challenges and Solutions**:
 
-Given the extensive historical data since and other element, performance issues initially arose due to the free Shiny.io plan being used but the bioinformaticians optimized data loading and implemented efficient data processing techniques within R to ensure smooth performance. Although we had to reduce the load on the platform and not use too many colors to ensure proper functionality.
+Given the extensive historical data and other elements, performance issues initially arose due to the free Shiny.io plan being used. However, the bioinformaticians optimized data loading and implemented efficient data processing techniques within R to ensure smooth performance. However, we had to reduce the load on the platform and not use too many colours to ensure proper functionality.
 
 The team integrated reactive elements to ensure that every change in filter settings was reflected in real-time on maps, charts, and reports without any noticeable delay.
 
@@ -71,8 +71,8 @@ Any questions or feedback, kindly contact the contributors:
 - **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
 - **Ndubueze Ngozika Abigail**: [ndubungoabi2002@gmail.com](mailto:ndubungoabi2002@gmail.com)
 - **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
-- **Alo Y. Mary**: [aloyetunde99@gmail.com][mailto:aloyetunde99@gmail.com]
-- **Akeemat Ayinla**: [akeematayinla@gmail.com][mailto@akeematayinla@gmail.com]
+- **Alo Y. Mary**: [aloyetunde99@gmail.com](mailto:aloyetunde99@gmail.com)
+- **Akeemat Ayinla**: [akeematayinla@gmail.com](mailto@akeematayinla@gmail.com)
 
 
  
