@@ -21,13 +21,13 @@ Following an analysis of the WHO raw cholera outbreak data, this report provides
 
 Globally, 9180678 cases and 897204 deaths have been reported between 1949 and 2016\. In general, number of reported cholera cases were higher between 1990 and 2016 compared to 1949 and 1990 (Figure 1). Before 1990, the peaks of the outbreak appear to have occurred in early 1950s and early 1970s. Conversely, after a peak in the 1950s, the number of deaths (Figure 1), and consequently the case fatality rates (Figure 2\) declined gradually till it reached a plateau in the 2000s.
 
-![](https://drive.google.com/file/d/1tLFezZYuBSJaWrvDCpHQup-csuIqYqtJ/view?usp=drive_link)
+![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Cholera%20Reported%20Death%20and%20Cases%20Over%20Time.jpeg)
 
 Figure 1: Distribution of reported cholera cases and deaths over time.
 
  
 
-![](https://drive.google.com/file/d/17MJI36taJLJEOUX0QDF1yNLyhkyeh14r/view)
+![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Average%20Cholera%20Fatality%20Rate%20Over%20Time.jpeg)
 
 Figure 2: Average case fatality rates over time.
 
@@ -40,12 +40,12 @@ Apart from Haiti and Peru, the top 10 countries with the highest number of cases
 
 Figure 3: Top 20 countries with the highest number of reported cases and their corresponding death reports.
 
- ![]()
+ ![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Top%2020%20Countries%20Reported%20and%20Deaths%20Cholera%20Cases.png)
 
-Figure 4: Top countries with the highest case fatality rates between 1949 and 1960
+Figure 4: Top countries with the highest case fatality rates between 1949 and 2016
 
- ---
-
+![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Top%2020%20Countries%20with%20Highest%20Fatality%20Rate.jpeg)
+![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Heatmap%20Average%20Cholera%20Fatality%20Rate%20by%20Year%20and%20Country%20(Top%2070%20Countries).png)
 ## **Discussion**
 
 The decline in the reported cases and death over time may be due to high effectiveness of actions and initiatives geared towards the prevention and control of data. It could also be due to under-reporting of cases and deaths in some countries, especially in resource-limited settings where confirmatory diagnostic tests were not carried out.
