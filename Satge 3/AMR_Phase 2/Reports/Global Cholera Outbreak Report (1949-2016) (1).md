@@ -31,7 +31,7 @@ Figure 1: Distribution of reported cholera cases and deaths over time.
 
 Figure 2: Average case fatality rates over time.
 
-Country-wise, India had the highest number of reported cases (1363250) and deaths (509438) (Figure 3), while Italy had the highest average case fatality rate (53.3%) (Figure 4\) over time.
+Country-wise, India had the highest number of reported cases (1363250) and deaths (509438) (Figure 3), while Italy had the highest average case fatality rate (53.3%) (Figure 4 and Figure 5) over time.
 
 Apart from Haiti and Peru, the top 10 countries with the highest number of cases are Asian (India, Indonesia, Bangladesh, Afghanistan) and African countries (DRC, Mozambique, Somalia, Nigeria) (Figure 3).
  
@@ -45,6 +45,9 @@ Figure 3: Top 20 countries with the highest number of reported cases and their c
 Figure 4: Top countries with the highest case fatality rates between 1949 and 2016
 
 ![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Top%2020%20Countries%20with%20Highest%20Fatality%20Rate.jpeg)
+
+Figure 5: Heatmap showing Top 70 countries with the highest fatality rates between 1949 and 2016
+
 ![](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Images/Heatmap%20Average%20Cholera%20Fatality%20Rate%20by%20Year%20and%20Country%20(Top%2070%20Countries).png)
 ## **Discussion**
 
