@@ -1,5 +1,6 @@
 ## **TITLE: CHOLERA OUTBREAK REPORT**
 
+Authors (@slack): Akeemat Ayinla (@That_Hakeemah), Alo Yetunde Mary (@YetQiaM)
 ---
 
 1. [Overview](#overview)
