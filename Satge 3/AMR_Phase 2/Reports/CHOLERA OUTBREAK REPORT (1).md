@@ -2,6 +2,8 @@
 
 Authors (@slack): Akeemat Ayinla (@That_Hakeemah), Alo Yetunde Mary (@YetQiaM)
 ---
+**PHASE ONE:** [https://github.com/Tomi-beloved/hackbio-cancer-internship/tree/main/Satge%203/AMR_Phase%201](https://github.com/Tomi-beloved/hackbio-cancer-internship/tree/main/Satge%203/AMR_Phase%201)
+
 **Project files**  
 **Report:** [https://github.com/Tomi-beloved/hackbio-cancer-internship/tree/main/Satge%203/AMR_Phase%202/Reports](https://github.com/Tomi-beloved/hackbio-cancer-internship/tree/main/Satge%203/AMR_Phase%202/Reports)  
 **R script:** [https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Codes/CODE.R](https://github.com/Tomi-beloved/hackbio-cancer-internship/blob/main/Satge%203/AMR_Phase%202/Codes/CODE.R)  
