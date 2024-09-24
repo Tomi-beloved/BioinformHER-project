@@ -1,4 +1,4 @@
-## **Front-End Bioinformaticians' Report on Cholera Outbreak 
+## **Front-End Bioinformaticians' Report on Cholera Outbreak**
 # **Data Visualization and Project Report**
 
 1. [Objectives](#objectives)
