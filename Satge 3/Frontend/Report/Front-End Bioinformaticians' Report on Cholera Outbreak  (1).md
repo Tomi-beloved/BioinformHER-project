@@ -10,11 +10,11 @@
 
 ## **Objective:**
 
-The objective of this project was to create an intuitive and interactive Shiny app that visualizes cholera outbreak data from the World Health Organization (WHO) and provides insightful summaries and reports for selected countries. The task involved collaboration between AMR epidemiologists and front-end bioinformaticians.
+This project aimed to create an intuitive and interactive Shiny app that visualizes cholera outbreak data from the World Health Organization (WHO) and provides insightful summaries and reports for selected countries. The task involved collaboration between AMR epidemiologists and front-end bioinformaticians.
 
 ## **Formation of Teams:**
 
-Two AMR epidemiologists and five front-end bioinformaticians were grouped together. The team coordinated closely to ensure that the epidemiologists provided accurate data analysis while the bioinformaticians focused on creating an effective user interface using R Shiny.
+Two AMR epidemiologists and five front-end bioinformaticians were grouped. The team coordinated closely to ensure that the epidemiologists provided accurate data analysis while the bioinformaticians focused on creating an effective user interface using R Shiny.
 
 ## **Task Breakdown**
 
@@ -26,7 +26,7 @@ The team successfully downloaded the raw cholera outbreak data from the WHO webs
 
 2.  **Shiny App Development**:
 
-The bioinformaticians utilized the **R Shiny** framework to develop the interactive dashboard that would visualize the cholera data. They focused on creating a user-friendly interface that could handle large datasets and enable users to explore data easily.
+The bioinformaticians utilized the **R Shiny** framework to develop the interactive dashboard to visualize the cholera data. They focused on creating a user-friendly interface that could handle large datasets and enable users to explore data easily.
 
 ---
 
@@ -71,6 +71,8 @@ Any questions or feedback, kindly contact the contributors:
 - **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
 - **Ndubueze Ngozika Abigail**: [ndubungoabi2002@gmail.com](mailto:ndubungoabi2002@gmail.com)
 - **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
+- **Alo Y. Mary**: [aloyetunde99@gmail.com][mailto:aloyetunde99@gmail.com]
+- **Akeemat Ayinla**: [akeematayinla@gmail.com][mailto@akeematayinla@gmail.com]
 
 
  
