@@ -68,7 +68,7 @@ Any questions or feedback, kindly contact the contributors:
 
 - **Tomilayo Oluwaseun Fadairo**: [Oluwaseuntomilayo9@gmail.com](mailto:Oluwaseuntomilayo9@gmail.com)
 - **Akinjide Samuel Anifowose**: [Anifowosesamuel54@gmail.com](mailto:Anifowosesamuel54@gmail.com)
-- **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
+- **Opeoluwa Shodipe**: [opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
 - **Ndubueze Ngozika Abigail**: [ndubungoabi2002@gmail.com](mailto:ndubungoabi2002@gmail.com)
 - **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
 - **Alo Y. Mary**: [aloyetunde99@gmail.com](mailto:aloyetunde99@gmail.com)
