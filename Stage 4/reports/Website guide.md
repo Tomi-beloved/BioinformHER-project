@@ -45,7 +45,7 @@ The ShinyGO 1.0 website is easy to navigate, with visualization and options to h
 
 ---
 
-## **Contact**
+## **Contacts**
 - **Tomilayo Oluwaseun Fadairo**: [Oluwaseuntomilayo9@gmail.com](mailto:Oluwaseuntomilayo9@gmail.com)
 - **Akinjide Samuel Anifowose**: [Anifowosesamuel54@gmail.com](mailto:Anifowosesamuel54@gmail.com)
 - **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
