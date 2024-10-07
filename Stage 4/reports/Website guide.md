@@ -1,6 +1,6 @@
 ## **Navigating the GO 1.0 App by the Goal-getters team**
 
-GO 1.0 is an interactive web-based application for gene-set enrichment analysis and visualization patterned after ShinyGO 8.0.
+ShinyGO 1.0 is an interactive web-based application for gene-set enrichment analysis and visualization patterned after ShinyGO 8.0.
 
 Below is a concise guide on how to navigate through it:
 
@@ -23,7 +23,7 @@ The R Shiny app dashboard project was initiated as part of a HackBio internship 
 
 **Aims**
 
-The goal of this project is to create a user-friendly website that simplifies gene set enrichment analysis while offering an intuitive interface for researchers. The GO 1.0 website will facilitate efficient data analysis and interpretation, thus contributing to the advancement of scientific research in genomics and related fields.
+The goal of this project is to create a user-friendly website that simplifies gene set enrichment analysis while offering an intuitive interface for researchers. The ShinyGO 1.0 website will facilitate efficient data analysis and interpretation, thus contributing to the advancement of scientific research in genomics and related fields.
 
 ---
 
@@ -41,7 +41,7 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 **Download Results:** Users can download enrichment results and visualizations in various formats (e.g., CSV, PDF, PNG) for further analysis.
 
-The ShinyGO 1.0 app is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
+The ShinyGO 1.0 website is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
 
 ---
 
@@ -51,5 +51,7 @@ The ShinyGO 1.0 app is easy to navigate, with visualization and options to help 
 - **Opeoluwa Shodipe**: [Opeoluwashodipe94@gmail.com](mailto:Opeoluwashodipe94@gmail.com)
 - **Ndubueze Ngozika Abigail**: [ndubungoabi2002@gmail.com](mailto:ndubungoabi2002@gmail.com)
 - **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
+
+---
 
 ## **App Link:** https://goal-getters.shinyapps.io/ShinyGO/
