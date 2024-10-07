@@ -1,4 +1,4 @@
-**App Functionality and Development:**
+### **App Functionality and Development** ###
 
 The R Shiny app developed for functional enrichment analysis utilizes two core functions from the TCGAbiolinks package: TCGAanalyze\_EAcomplete () and TCGA\_EAbarplot (). The app allows users to input gene lists, conduct enrichment analyses, and visualize results in an interactive and user-friendly manner. Key components of the app's functionality are:
 
