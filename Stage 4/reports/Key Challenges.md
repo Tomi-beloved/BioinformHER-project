@@ -1,4 +1,4 @@
-##**Key Challenges Faced During This Project**##
+### **Key Challenges Faced During This Project** ###
 
 - Package Installation Issues: The large size of the required packages and unstable network connections in Nigeria frequently hindered the installation process.
 - Version Compatibility Problems: Certain packages, such as TCG plots, required specific versions which necessitated downgrading or upgrading to resolve compatibility issues.
