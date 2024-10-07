@@ -41,7 +41,7 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 **Download Results:** Users can download enrichment results and visualizations in various formats (e.g., PDF, PNG) for further analysis.
 
-The ShinyGO 1.0 website is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
+The GO 1.0 website is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
 
 ---
 
