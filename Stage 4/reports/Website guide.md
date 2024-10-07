@@ -23,7 +23,7 @@ The R Shiny app dashboard project was initiated as part of a HackBio internship 
 
 **Aims**
 
-The goal of this project is to create a user-friendly website that simplifies gene set enrichment analysis while offering an intuitive interface for researchers. The ShinyGO 1.0 website will facilitate efficient data analysis and interpretation, thus contributing to the advancement of scientific research in genomics and related fields.
+The goal of this project is to create a user-friendly website that simplifies gene set enrichment analysis while offering an intuitive interface for researchers. The GO 1.0 website will facilitate efficient data analysis and interpretation, thus contributing to the advancement of scientific research in genomics and related fields.
 
 ---
 
