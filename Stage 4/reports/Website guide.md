@@ -1,4 +1,4 @@
-## **Navigating the GO 1.0 App by the Goal-getters team**
+## **Navigating the ShinyGO 1.0 App by the Goal-getters team**
 
 ShinyGO 1.0 is an interactive web-based application for gene-set enrichment analysis and visualization patterned after ShinyGO 8.0.
 
