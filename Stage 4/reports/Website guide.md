@@ -27,7 +27,7 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 ---
 
-## **Upload Gene List**
+## **Gene Enrichment**
 
 **Input Section:** Users can upload a gene list or manually input gene symbols, IDs, or aliases. Supported species are selectable from a drop-down menu.
 
