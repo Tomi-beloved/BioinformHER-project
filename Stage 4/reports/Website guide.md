@@ -27,7 +27,7 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 ---
 
-## **Gene Enrichment**
+## **Website Guide**
 
 **Input Section:** Users can upload a gene list or manually input gene symbols, IDs, or aliases. Supported species are selectable from a drop-down menu.
 
@@ -39,7 +39,7 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 **Visualization:** Results are shown in bar plots and scatter plots, enabling users to explore relationships between genes and pathways.
 
-**Download Results:** Users can download enrichment results and visualizations in various formats (e.g., CSV, PDF, PNG) for further analysis.
+**Download Results:** Users can download enrichment results and visualizations in various formats (e.g., PDF, PNG) for further analysis.
 
 The ShinyGO 1.0 website is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
 
