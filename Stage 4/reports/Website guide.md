@@ -1,4 +1,4 @@
-## **Navigating the ShinyGO 1.0 App by the Goal-getters team**
+## **Navigating the GO 1.0 App by the Goal-getters team**
 
 ShinyGO 1.0 is an interactive web-based application for gene-set enrichment analysis and visualization patterned after ShinyGO 8.0.
 
@@ -8,7 +8,7 @@ Below is a concise guide on how to navigate through it:
 
 ## **HOME**
 
-Welcome to ShinyGO 1.0, a user-friendly web-based platform for gene-set enrichment analysis. It features an easy-to-use interface, which offers customizable visualization options, and allows you to print results in either of the below formats CVS, PDF or PNG.
+Welcome to GO 1.0, a user-friendly web-based platform for gene-set enrichment analysis. It features an easy-to-use interface, which offers customizable visualization options, and allows you to print results in either of the below formats PDF or PNG.
 
 This platform provides valuable resources, including a guide on how to navigate through the website. This was developed as partial fulfillment of the HackBio internship program, GO 1.0 was patterned after ShinyGO 8.0 and this aims to simplify cancer gene-set enrichment analysis.
 
