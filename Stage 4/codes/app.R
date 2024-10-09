@@ -164,8 +164,8 @@ server <- function(input, output, session) {
   
   # Predefined gene sets
   geneSets <- list(
-    "Dummy Gene List 1" = c("TP53", "BRCA1", "EGFR", "MYC", "KRAS", "PTEN"),
-    "Dummy Gene List 2" = c("CDK2", "CCND1", "GATA3", "CDH1", "MTOR", "RB1")
+    "Example Gene List" = c("TP53", "BRCA1", "EGFR", "MYC", "KRAS", "PTEN"),
+    "Another Gene List" = c("CDK2", "CCND1", "GATA3", "CDH1", "MTOR", "RB1")
   )
   
   # Reactive function to retrieve the selected gene list
@@ -180,74 +180,52 @@ server <- function(input, output, session) {
     
     # Convert gene symbols to Entrez IDs
     mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
-    gene_info <- getBM(attributes = c('hgnc_symbol', 'entrezgene_id'),
-                       filters = 'hgnc_symbol',
-                       values = geneList(),
+    gene_info <- getBM(attributes = c('hgnc_symbol', 'entrezgene_id'), 
+                       filters = 'hgnc_symbol', 
+                       values = geneList(), 
                        mart = mart)
     
-    # Check if gene_info is empty
-    if (nrow(gene_info) == 0) {
-      showNotification("No genes found for the selected gene set.", type = "error")
-      return(NULL)
-    }
+    geneIDs <- gene_info$entrezgene_id
     
-    entrez_ids <- gene_info$entrezgene_id
+    # Perform enrichment analysis
+    enrichResult <- enrichGO(
+      gene = geneIDs,
+      OrgDb = org.Hs.eg.db,
+      ont = "BP",  # Perform enrichment based on Biological Process (BP)
+      pAdjustMethod = "BH",
+      pvalueCutoff = input$fdrCutoff,
+      qvalueCutoff = input$fdrCutoff,
+      readable = TRUE
+    )
     
-    # Retrieve TCGA data with sample type filtering and limit the number of samples
-    query <- GDCquery(project = "TCGA-BRCA",  
-                      data.category = "Transcriptome Profiling",
-                      sample.type = "Primary Tumor",  
-                      experimental.strategy = "RNA-Seq",  
-                      access = "open",
-                      workflow.type = "STAR - Counts")  
-    
-    GDCdownload(query)
-    data <- GDCprepare(query)
-    
-    # Limit the data to a smaller subset for testing
-    set.seed(42)
-    sample_indices <- sample(nrow(data), min(5, nrow(data)))  
-    limited_data <- data[sample_indices, ]
-    
-    limited_gene_indices <- sample(1:ncol(limited_data), min(50, ncol(limited_data)))  
-    limited_data <- limited_data[, limited_gene_indices]
-    
-    pvalCutoff <- input$fdrCutoff
-    minSize <- input$minPathSize
-    maxSize <- input$maxPathSize
-    
-    # Perform functional enrichment analysis using TCGAanalyze_EAcomplete and TCGA_EAbarplot
-    results <- TCGAanalyze_EAcomplete(data = limited_data, gene.list = entrez_ids, pvalueCutoff = pvalCutoff)
-    
-    list(results = results, gene_info = gene_info)
+    return(enrichResult)
   })
   
-  # Render gene characteristics table
-  output$geneInfo <- renderDT({
-    req(enrichmentResults())
-    gene_info <- enrichmentResults()$gene_info
-    gene_df <- data.frame(GeneSymbol = geneList(), EntrezID = gene_info$entrezgene_id)
-    datatable(gene_df)
-  })
-  
-  # Render protein interaction network
-  output$proteinNetwork <- renderVisNetwork({
-    edges <- data.frame(from = c("TP53", "BRCA1", "EGFR"),
-                        to = c("MYC", "KRAS", "PTEN"))
-    nodes <- data.frame(id = c("TP53", "BRCA1", "EGFR", "MYC", "KRAS", "PTEN"))
-    
-    visNetwork(nodes, edges) %>%
-      visEdges(arrows = 'to') %>%
-      visLayout(randomSeed = 123)
-  })
-  
-  # Render enrichment plot results
+  # Output enrichment plot in the Results tab
   output$plotResults <- renderPlot({
     req(enrichmentResults())
-    
-    barplot <- TCGA_EAbarplot(enrichmentResults()$results, title = "Gene Set Enrichment")
-    print(barplot)
+    barplot(enrichmentResults(), showCategory = input$nPathways)
   })
+  
+  # Gene characteristics table output
+  output$geneInfo <- renderDT({
+    req(geneList())
+    gene_info <- data.frame(Gene = geneList(), Symbol = geneList(), stringsAsFactors = FALSE)
+    datatable(gene_info, options = list(pageLength = 5))
+  })
+  
+  # Protein interaction network output
+  output$proteinNetwork <- renderVisNetwork({
+    req(geneList())
+    
+    # Placeholder network (replace with actual protein-protein interaction network data)
+    nodes <- data.frame(id = 1:6, label = geneList(), stringsAsFactors = FALSE)
+    edges <- data.frame(from = c(1,2,3,4,5), to = c(2,3,4,5,6))
+    
+    visNetwork(nodes, edges) %>%
+      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+  })
+  
 }
 
 # Run the application 
