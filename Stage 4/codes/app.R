@@ -1,31 +1,23 @@
 # Load required libraries
 library(shiny)
 library(shinythemes)
-library(TCGAbiolinks)
-library(pathview)
-library(biomaRt)
-library(ReactomePA)
-library(visNetwork)
-library(clusterProfiler)
-library(org.Hs.eg.db)
-library(ggplot2)
-library(plotly)
 library(DT)
-library(igraph)
+library(ggplot2)
+library(visNetwork)
+library(TCGAbiolinks)
 
-# Dummy data for species annotation (can be replaced with actual data source)
+# Dummy data for species annotation
 species_data <- data.frame(
-  id = 1:4,
-  scientific_name = c("Homo sapiens", "Mus musculus", "Danio rerio", "Saccharomyces cerevisiae"),
-  common_name = c("Human", "Mouse", "Zebrafish", "Baker's yeast"),
-  ncbi_taxonomy_id = c("9606", "10090", "7955", "4932"),
+  scientific_name = c("Homo sapiens", "Mus musculus"),
+  common_name = c("Human", "Mouse"),
+  ncbi_taxonomy_id = c("9606", "10090"),
   stringsAsFactors = FALSE
 )
 
 # Define UI for the Shiny app
 ui <- fluidPage(
   
-  theme = shinytheme("flatly"),  # Applying a flatly theme for a clean, professional look
+  theme = shinytheme("flatly"), 
   
   # Add custom CSS to style the title panel with a dark blue background and white text
   tags$head(
@@ -41,29 +33,31 @@ ui <- fluidPage(
     "))
   ),
   
-  # Header with title panel that stands alone
+  # Header with title panel that stands alone  
   div(class = "title-panel", "GO 1.0 - Gene Enrichment Analysis"),
-  
-  # Sidebar Layout with a fluid row
+ 
+  # Sidebar Layout with a fluid row 
   sidebarLayout(
     sidebarPanel(
+      fileInput("geneListFile", "Upload Gene List (CSV)", accept = ".csv"),
+      checkboxInput("useDummyGenes", "Use Dummy Genes as Background", value = TRUE),
+      checkboxInput("useDBGeneCount", "Use pathway DB for gene counts", value = FALSE),
+      numericInput("fdrCutoff", "FDR Cutoff", value = 0.05, min = 0, max = 1, step = 0.01),
+      selectInput("sortMethod", "Sort by:", choices = c("FDR", "Fold Enrichment", "Average Rank")),
       selectInput("speciesSelect", "Select Annotated Species:",
                   choices = species_data$scientific_name,
                   selected = "Homo sapiens"),
-      
       selectInput("enrichmentType", "Select Enrichment Type:", 
                   choices = c("Gene Ontology", "Biological Process", "Cellular Components", 
                               "Molecular Functions", "Pathways"),
                   selected = "Gene Ontology"),
       hr(),
-      selectInput("geneSet", "Choose a Gene Set", choices = c("Example Gene List", "Another Gene List")),
-      numericInput("fdrCutoff", "FDR Cutoff", value = 0.05, min = 0, max = 1, step = 0.01),
+      selectInput("geneSet", "Choose a Gene Set", choices = c("Dummy Gene List")),
       numericInput("nPathways", "Pathways to Show", value = 20, min = 1, max = 100, step = 1),
       numericInput("minPathSize", "Pathway Size: Min", value = 2, min = 1, max = 5000),
       numericInput("maxPathSize", "Pathway Size: Max", value = 5000, min = 1, max = 5000),
       checkboxInput("removeRedundancy", "Remove redundancy", value = TRUE),
       checkboxInput("abbreviatePathways", "Abbreviate pathways", value = TRUE),
-      checkboxInput("useDBforCounts", "Use pathway DB for gene counts", value = FALSE),
       checkboxInput("showPathwayIDs", "Show pathway IDs", value = FALSE),
       actionButton("runAnalysis", "Run Enrichment Analysis"),
       hr(),
@@ -118,7 +112,6 @@ ui <- fluidPage(
                             Users can download enrichment results and visualizations in various formats (e.g.PDF, PNG) for further analysis.
                             The GO 1.0 app is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.", 
                             style = "font-size:16px;")
-                          
                    )
                  )),
         
@@ -131,7 +124,12 @@ ui <- fluidPage(
         # Results tab
         tabPanel("Results", 
                  h3("Enrichment Results", style = "margin-top:20px;"),
-                 plotOutput("plotResults")),
+                 DTOutput("enrichmentTable"),
+                 plotOutput("goPlot"),
+                 # Download buttons for PDF and PNG
+                 downloadButton("downloadPDF", "Download PDF"),
+                 downloadButton("downloadPNG", "Download PNG")
+        ),
         
         # Contact tab
         tabPanel("Contact",
@@ -158,75 +156,215 @@ ui <- fluidPage(
   div(class = "footer", "© 2024 Goal-getters. All rights reserved.")
 )
 
-
 # Define server logic for the Shiny app
-server <- function(input, output, session) {
+server <- function(input, output) {
   
-  # Predefined gene sets
-  geneSets <- list(
-    "Example Gene List" = c("TP53", "BRCA1", "EGFR", "MYC", "KRAS", "PTEN"),
-    "Another Gene List" = c("CDK2", "CCND1", "GATA3", "CDH1", "MTOR", "RB1")
-  )
+  # Use `TCGAbiolinks` reactively to save resources
+  tcgaData <- eventReactive(input$runTCGAQuery, {
+    GDCquery(project = "TCGA-BRCA", 
+             data.category = "Transcriptome Profiling", 
+             data.type = "Gene Expression Quantification", 
+             workflow.type = "HTSeq - Counts")
+  })
   
-  # Reactive function to retrieve the selected gene list
+  observeEvent(tcgaData(), {
+    GDCdownload(tcgaData())
+    data <- GDCprepare(tcgaData())
+  })
+  
+  # Dummy gene set for testing
+  geneSets <- list("Sample Gene List" = c("TP53", "BRCA1", "EGFR"))
+  
+  # Reactive function to retrieve gene list from uploaded file or predefined set
   geneList <- reactive({
-    req(input$geneSet)
-    geneSets[[input$geneSet]]
+    if (is.null(input$geneListFile)) {
+      return(geneSets[["Sample Gene List"]])
+    } else {
+      return(read.csv(input$geneListFile$datapath, stringsAsFactors = FALSE)$GeneSymbol)
+    }
   })
   
-  # Perform GO and Pathway enrichment analysis with default cutoffs and user inputs
-  enrichmentResults <- eventReactive(input$runAnalysis, {
-    req(geneList())
-    
-    # Convert gene symbols to Entrez IDs
-    mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
-    gene_info <- getBM(attributes = c('hgnc_symbol', 'entrezgene_id'), 
-                       filters = 'hgnc_symbol', 
-                       values = geneList(), 
-                       mart = mart)
-    
-    geneIDs <- gene_info$entrezgene_id
-    
-    # Perform enrichment analysis
-    enrichResult <- enrichGO(
-      gene = geneIDs,
-      OrgDb = org.Hs.eg.db,
-      ont = "BP",  # Perform enrichment based on Biological Process (BP)
-      pAdjustMethod = "BH",
-      pvalueCutoff = input$fdrCutoff,
-      qvalueCutoff = input$fdrCutoff,
-      readable = TRUE
-    )
-    
-    return(enrichResult)
-  })
-  
-  # Output enrichment plot in the Results tab
-  output$plotResults <- renderPlot({
-    req(enrichmentResults())
-    barplot(enrichmentResults(), showCategory = input$nPathways)
-  })
-  
-  # Gene characteristics table output
+  # Populate Gene Characteristics table
   output$geneInfo <- renderDT({
-    req(geneList())
-    gene_info <- data.frame(Gene = geneList(), Symbol = geneList(), stringsAsFactors = FALSE)
-    datatable(gene_info, options = list(pageLength = 5))
+    gene_data <- data.frame(
+      Gene = geneList(),
+      Description = c("Tumor suppressor", "DNA repair", "Receptor tyrosine kinase"),
+      Chromosome = c("17p13.1", "17q21.31", "7p11.2"),
+      stringsAsFactors = FALSE
+    )
+    datatable(gene_data, options = list(pageLength = 5))
   })
   
-  # Protein interaction network output
+  # Create Protein Interaction Network
   output$proteinNetwork <- renderVisNetwork({
-    req(geneList())
-    
-    # Placeholder network (replace with actual protein-protein interaction network data)
-    nodes <- data.frame(id = 1:6, label = geneList(), stringsAsFactors = FALSE)
-    edges <- data.frame(from = c(1,2,3,4,5), to = c(2,3,4,5,6))
-    
+    nodes <- data.frame(id = geneList(), label = geneList(), group = "Gene")
+    edges <- data.frame(
+      from = sample(geneList(), 5, replace = TRUE),
+      to = sample(geneList(), 5, replace = TRUE)
+    )
     visNetwork(nodes, edges) %>%
+      visNodes(size = 10) %>%
+      visEdges(arrows = "to") %>%
       visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
   })
   
+  # Perform enrichment analysis when the button is pressed
+  enrichmentData <- reactiveVal() # Store enrichment data reactively
+  observeEvent(input$runAnalysis, {
+    
+    # Create dummy pathways data frame for demonstration
+    pathways <- data.frame(
+      Pathway = paste("Pathway", 1:5),
+      Overlap = sample(1:5, 5, replace = TRUE),
+      TotalGenes = sample(10:20, 5, replace = TRUE)
+    )
+    
+    # Perform enrichment calculation
+    pathways$PValue <- phyper(pathways$Overlap - 1, pathways$TotalGenes, 100 - pathways$TotalGenes, length(geneList()), lower.tail = FALSE)
+    pathways$FDR <- p.adjust(pathways$PValue, method = "BH")
+    pathways <- pathways[pathways$FDR < input$fdrCutoff, ]
+    
+    # Save the data for downloading
+    enrichmentData(pathways)
+    
+    # Output results table
+    output$enrichmentTable <- renderDT({
+      datatable(pathways, options = list(pageLength = 5))
+    })
+    
+    # Output plot of top GO terms
+    output$goPlot <- renderPlot({
+      ggplot(pathways, aes(x = reorder(Pathway, -FDR), y = FDR)) +
+        geom_bar(stat = "identity") +
+        coord_flip() +
+        labs(x = "Pathway", y = "FDR", title = "Enrichment Analysis Results") +
+        theme_minimal()
+    })
+  })
+  
+  # Download handler for the enrichment table as PDF
+  output$downloadPDF <- downloadHandler(
+    filename = function() { paste("enrichment_results", Sys.Date(), ".pdf", sep = "") },
+    content = function(file) {
+      write.csv(enrichmentData(), file, row.names = FALSE)
+    }
+  )
+  
+  # Download handler for the plot as PNG
+  output$downloadPNG <- downloadHandler(
+    filename = function() { paste("enrichment_plot", Sys.Date(), ".png", sep = "") },
+    content = function(file) {
+      # Define server logic for the Shiny app
+server <- function(input, output) {
+  
+  # Use `TCGAbiolinks` reactively to save resources
+  tcgaData <- eventReactive(input$runTCGAQuery, {
+    GDCquery(project = "TCGA-BRCA", 
+             data.category = "Transcriptome Profiling", 
+             data.type = "Gene Expression Quantification", 
+             workflow.type = "HTSeq - Counts")
+  })
+  
+  observeEvent(tcgaData(), {
+    GDCdownload(tcgaData())
+    data <- GDCprepare(tcgaData())
+  })
+  
+  # Dummy gene set for testing
+  geneSets <- list("Sample Gene List" = c("TP53", "BRCA1", "EGFR"))
+  
+  # Reactive function to retrieve gene list from uploaded file or predefined set
+  geneList <- reactive({
+    if (is.null(input$geneListFile)) {
+      return(geneSets[["Sample Gene List"]])
+    } else {
+      return(read.csv(input$geneListFile$datapath, stringsAsFactors = FALSE)$GeneSymbol)
+    }
+  })
+  
+  # Populate Gene Characteristics table
+  output$geneInfo <- renderDT({
+    gene_data <- data.frame(
+      Gene = geneList(),
+      Description = c("Tumor suppressor", "DNA repair", "Receptor tyrosine kinase"),
+      Chromosome = c("17p13.1", "17q21.31", "7p11.2"),
+      stringsAsFactors = FALSE
+    )
+    datatable(gene_data, options = list(pageLength = 5))
+  })
+  
+  # Create Protein Interaction Network
+  output$proteinNetwork <- renderVisNetwork({
+    nodes <- data.frame(id = geneList(), label = geneList(), group = "Gene")
+    edges <- data.frame(
+      from = sample(geneList(), 5, replace = TRUE),
+      to = sample(geneList(), 5, replace = TRUE)
+    )
+    visNetwork(nodes, edges) %>%
+      visNodes(size = 10) %>%
+      visEdges(arrows = "to") %>%
+      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+  })
+  
+  # Perform enrichment analysis when the button is pressed
+  enrichmentData <- reactiveVal() # Store enrichment data reactively
+  observeEvent(input$runAnalysis, {
+    
+    # Create dummy pathways data frame for demonstration
+    pathways <- data.frame(
+      Pathway = paste("Pathway", 1:5),
+      Overlap = sample(1:5, 5, replace = TRUE),
+      TotalGenes = sample(10:20, 5, replace = TRUE)
+    )
+    
+    # Perform enrichment calculation
+    pathways$PValue <- phyper(pathways$Overlap - 1, pathways$TotalGenes, 100 - pathways$TotalGenes, length(geneList()), lower.tail = FALSE)
+    pathways$FDR <- p.adjust(pathways$PValue, method = "BH")
+    pathways <- pathways[pathways$FDR < input$fdrCutoff, ]
+    
+    # Save the data for downloading
+    enrichmentData(pathways)
+    
+    # Output results table
+    output$enrichmentTable <- renderDT({
+      datatable(pathways, options = list(pageLength = 5))
+    })
+    
+    # Output plot of top GO terms
+    output$goPlot <- renderPlot({
+      ggplot(pathways, aes(x = reorder(Pathway, -FDR), y = FDR)) +
+        geom_bar(stat = "identity") +
+        coord_flip() +
+        labs(x = "Pathway", y = "FDR", title = "Enrichment Analysis Results") +
+        theme_minimal()
+    })
+  })
+  
+  # Download handler for the enrichment table as CSV
+  output$downloadCSV <- downloadHandler(
+    filename = function() { paste("enrichment_results", Sys.Date(), ".csv", sep = "") },
+    content = function(file) {
+      write.csv(enrichmentData(), file, row.names = FALSE)
+    }
+  )
+  
+  # Download handler for the plot as PNG
+  output$downloadPNG <- downloadHandler(
+    filename = function() { paste("enrichment_plot", Sys.Date(), ".png", sep = "") },
+    content = function(file) {
+      # Save the plot as a PNG file
+      ggsave(file, plot = last_plot(), device = "png", width = 8, height = 6)
+    }
+  )
 }
+
+      # Save the plot as a PNG file
+      ggsave(file, plot = last_plot(), device = "png", width = 8, height = 6)
+    }
+  )
+}
+
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)

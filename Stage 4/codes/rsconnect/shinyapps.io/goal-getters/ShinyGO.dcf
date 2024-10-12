@@ -4,8 +4,8 @@ username: goal-getters
 account: goal-getters
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 12928711
-bundleId: 9187023
+appId: 12977361
+bundleId: 9214455
 url: https://goal-getters.shinyapps.io/ShinyGO/
 version: 1
 asMultiple: FALSE
