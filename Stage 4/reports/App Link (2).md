@@ -1,1 +1,1 @@
-**App Link: https\://goal-getters.shinyapps.io/ShinyGO/**
+**App Link: https\://goal-getters2.shinyapps.io/ShinyGO/**
