@@ -47,7 +47,7 @@ A web browser (Chrome, Firefox, or any other browser)
 
 3\. Click enter.
 
-##**Main Features**
+**Main Features**
 
 1\. Input Gene List: Upload or paste your gene list in the provided text box; make sure to enter a new gene on new lines.
 
@@ -61,11 +61,11 @@ A web browser (Chrome, Firefox, or any other browser)
 
 6\. Downloading Results: Click the "Download Results" button to save your analysis in preferred formats (e.g., CSV, PDF).
 
-##**Conclusion**
+**Conclusion**
 
 The Shiny GO1.0 app is a powerful tool for gene set enrichment analysis, providing an intuitive interface for researchers to derive meaningful biological insights from their gene data. Explore the functionalities and leverage the app for your research needs!
 
-##**Support**
+**Support**
 
 If you encounter any issues or have questions, please contact our support team via the contact link on the app.
 
