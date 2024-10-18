@@ -41,7 +41,7 @@ A web browser (Chrome, Firefox, or any other browser)
 
 **Accessing the App**
 
-1\. Open your web browser.
+1\. Open your web browser
 
 2\. Enter the URL to access the Shiny GO 1.0 app.
 
