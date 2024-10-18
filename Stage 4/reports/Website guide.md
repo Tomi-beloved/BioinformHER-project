@@ -29,19 +29,45 @@ The goal of this project is to create a user-friendly website that simplifies ge
 
 ## **Website Guide**
 
-**Input Section:** Users can upload a gene list or manually input gene symbols, IDs, or aliases. Supported species are selectable from a drop-down menu.
+---
 
-**Options:** Adjust enrichment analysis parameters, such as the significance level (FDR), the minimum/maximum pathway size, and the databases to search against (e.g., GO terms, KEGG pathways).
+**INTRODUCTION**
 
-**Results:** Once genes are submitted, GO 1.0 automatically performs enrichment analysis, presenting the results as tables and plots.
+The Shiny GO 1.0 app is a user-friendly web application for performing Gene Set Enrichment Analysis (GSEA). It allows researchers to identify enriched gene sets based on their input gene lists, facilitating insights into biological functions and pathways.****
 
-**Pathways and Processes:** View enriched Gene Ontology (GO) terms, pathways, biological processes, molecular functions, and cellular components.
+**Requirements.**
 
-**Visualization:** Results are shown in bar plots and scatter plots, enabling users to explore relationships between genes and pathways.
+A web browser (Chrome, Firefox, or any other browser)
 
-**Download Results:** Users can download enrichment results and visualizations in various formats (e.g., PDF, PNG) for further analysis.
+**Accessing the App**
 
-The GO 1.0 website is easy to navigate, with visualization and options to help users interpret and explore functional enrichment data.
+1\. Open your web browser.
+
+2\. Enter the URL to access the Shiny GO 1.0 app.
+
+3\. Click enter.
+
+##**Main Features**
+
+1\. Input Gene List: Upload or paste your gene list in the provided text box; make sure to enter a new gene on new lines.
+
+2\. Select enrichment types: Choose a specific enrichment type for analysis (e.g., Biological process, pathway).
+
+3\. Click the "Run Analysis" button to initiate the gene set enrichment analysis. Wait for the results to load.
+
+4\. Viewing the Results: The app will display a summary of the enrichment results, including enriched terms and their significance values.
+
+5\. Visualization Tools: View results in various formats, including charts and graphs.
+
+6\. Downloading Results: Click the "Download Results" button to save your analysis in preferred formats (e.g., CSV, PDF).
+
+##**Conclusion**
+
+The Shiny GO1.0 app is a powerful tool for gene set enrichment analysis, providing an intuitive interface for researchers to derive meaningful biological insights from their gene data. Explore the functionalities and leverage the app for your research needs!
+
+##**Support**
+
+If you encounter any issues or have questions, please contact our support team via the contact link on the app.
 
 ---
 
@@ -53,5 +79,4 @@ The GO 1.0 website is easy to navigate, with visualization and options to help u
 - **Nwankwo Peace Nneka**: [nnekapeace85@gmail.com](mailto:nnekapeace85@gmail.com)
 
 ---
-
 ## **App Link:** https://goal-getters.shinyapps.io/ShinyGO/
