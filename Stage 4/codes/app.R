@@ -3,6 +3,7 @@ library(shiny)
 library(shinythemes)
 library(DT)  # For interactive data tables
 library(TCGAbiolinks)
+library(EDASeq)
 
 # Define UI for the app
 ui <- fluidPage(
@@ -47,6 +48,7 @@ ui <- fluidPage(
                                         "Pathway" = "Pathway"),
                          selected = "BP"),  # Default selected option
       actionButton("analyze", "Run Enrichment Analysis"),
+      downloadButton("downloadPlot", "Download Barplot PDF"),  # Download button for the plot
       hr()
     ),
     
@@ -68,29 +70,41 @@ ui <- fluidPage(
         
         # About tab with updated content
         tabPanel("About",
-                 fluidRow(
-                   column(12,
-                          h2("About", style = "margin-top:20px; text-align:center;"),
-                          hr(),
-                          h3("Initiation"),
-                          p("This R Shiny app dashboard project was initiated as part of the HackBio internship program, where participants were tasked with developing R Shiny dashboards for bioinformatics applications on functional enrichment analysis using cancer genome atlas data.", 
-                            style = "font-size:16px;"),
-                          h3("Aims"),
-                          p("The goal of this project is to create a user-friendly platform that simplifies gene set enrichment analysis and offers an intuitive interface for researchers. GO 1.0 facilitates efficient data analysis and interpretation, contributing to scientific research advancement in genomics and related fields.", 
-                            style = "font-size:16px;"),
-                          h3("Navigating the GO 1.0 website"),
-                          p("GO 1.0 is an interactive web-based application for gene-set enrichment analysis and visualization, patterned after ShinyGO 8.0.", style = "font-size:16px;"),
-                          h3("Below is a concise guide:"),
-                          p("Users can upload a gene list or manually input gene symbols, IDs, or aliases. Supported species can be selected from a drop-down menu. Users can adjust enrichment analysis parameters such as FDR, pathway size, and select databases (e.g., GO terms, KEGG pathways). Results are displayed in tables and plots and can be downloaded in PDF or PNG formats.", 
-                            style = "font-size:16px;")
-                   )
-                 )),
+                 h2("INTRODUCTION"),
+                 p("The Shiny GO 1.0 app is a user-friendly web application for performing Gene Set Enrichment Analysis (GSEA). 
+                It allows researchers to identify enriched gene sets based on their input gene lists, facilitating insights 
+                into biological functions and pathways."),
+                 
+                 h3("Requirements"),
+                 p("A web browser (Chrome, Firefox, or any other browser)"),
+                 
+                 h3("Accessing the App"),
+                 p("1. Open your web browser."),
+                 p("2. Enter the URL to access the Shiny GO 1.0 app."),
+                 p("3. Wait for the app to load."),
+                 
+                 h3("Main Features"),
+                 p("1. Input Gene List: Upload or paste your gene list in the provided text box. Make sure to separate genes by commas or new lines."),
+                 p("2. Select Enrichment Types: Choose specific enrichment types for analysis (e.g., Biological Process, Pathway)."),
+                 p("3. Click the 'Run Analysis' button to initiate the gene set enrichment analysis. Wait for the results to load."),
+                 p("4. Viewing the Results: The app will display a summary of the enrichment results, including enriched terms and their significance values."),
+                 p("5. Visualization Tools: View results in various formats, including charts and graphs."),
+                 p("6. Downloading Results: Click the 'Download Results' button to save your analysis in preferred formats (e.g., CSV, PDF)."),
+                 
+                 h3("Conclusion"),
+                 p("The Shiny GO 1.0 app is a powerful tool for gene set enrichment analysis, providing an intuitive interface for researchers to derive meaningful 
+                biological insights from their gene data. Explore the functionalities and leverage the app for your research needs!"),
+                 
+                 h3("Support"),
+                 p("If you encounter any issues or have questions, please contact our support team via the contact link on the app or email us directly at 
+                support@2024 Goal-getters.")
+        ),
         
         # Results tab
         tabPanel("Results",
                  h4("Enrichment Analysis Results"),
                  DTOutput("resultsTable"),  # Use DT for better tables
-                 plotOutput("enrichmentPlot")
+                 plotOutput("enrichmentPlot", width = "100%", height = "700px")  # Add the plot output here
         ),
         
         # Contact tab
@@ -120,7 +134,6 @@ ui <- fluidPage(
   div(class = "footer", "© 2024 Goal-getters. All rights reserved.")
 )
 
-# Define server logic
 server <- function(input, output) {
   
   observeEvent(input$analyze, {
@@ -184,38 +197,59 @@ server <- function(input, output) {
       
       # Combine results into a single data frame, fill missing values with NA
       combinedResults <- Reduce(function(x, y) merge(x, y, all = TRUE), resultsToDisplay)
-      
-      # Render the combined results table using DT
-      datatable(combinedResults, options = list(pageLength = 10, scrollX = TRUE))
+      datatable(combinedResults)
     })
     
-    # Plotting the enrichment analysis results (simplified example)
+    # Visualization
     output$enrichmentPlot <- renderPlot({
-      req(EA_result)
+      # Check if any of the results are available
+      req(any(c("BP", "CC", "MF", "Pathway") %in% input$enrichmentTypes))
       
-      # Check if there are valid results for the barplot
-      barplot_data <- as.data.frame(table(unlist(EA_result)))
-      
-      # Only plot if there is valid data
-      if (nrow(barplot_data) > 0 && all(is.finite(barplot_data$Freq))) {
-        barplot(
-          height = barplot_data$Freq,
-          names.arg = barplot_data$Var1,
-          las = 2,  # Make the labels vertical
-          col = "blue",
-          main = "Enrichment Analysis Results",
-          xlab = "Frequency",
-          ylab = "Terms"
-        )
-      } else {
-        # If there's no valid data, show a message
-        plot.new()
-        text(0.5, 0.5, "No valid enrichment data to display.", cex = 1.5)
-      }
+      # Generate the barplot
+      TCGAvisualize_EAbarplot(
+        tf = rownames(EA_result$ResBP),  # Using BP's rownames, adjust this depending on your dataset
+        GOBPTab = EA_result$ResBP,
+        GOCCTab = EA_result$ResCC,
+        GOMFTab = EA_result$ResMF,
+        PathTab = EA_result$ResPat,
+        nRGTab = geneData,
+        nBar = 10,  # Number of top terms to display
+        filename = NULL,  # Do not create a PDF file here
+        text.size = 1.5,  # Adjust text size
+        mfrow = c(1, 1),  # Single large plot layout
+        xlim = NULL,
+        fig.width = 30,
+        fig.height = 15,
+        color = c("orange", "cyan", "green", "yellow")  # Bar colors for each category
+      )
     })
+    
+    # Download handler for the plot
+    output$downloadPlot <- downloadHandler(
+      filename = "TCGAvisualize_EAbarplot_Output.pdf",
+      content = function(file) {
+        pdf(file, width = 30, height = 15)  # Create a PDF device
+        TCGAvisualize_EAbarplot(
+          tf = rownames(EA_result$ResBP),
+          GOBPTab = EA_result$ResBP,
+          GOCCTab = EA_result$ResCC,
+          GOMFTab = EA_result$ResMF,
+          PathTab = EA_result$ResPat,
+          nRGTab = geneData,
+          nBar = 10,  # Number of top terms to display
+          filename = NULL,  # No file created at this point
+          text.size = 1.5,  # Adjust text size
+          mfrow = c(1, 1),  # Single large plot layout
+          xlim = NULL,
+          fig.width = 30,
+          fig.height = 15,
+          color = c("orange", "cyan", "green", "yellow")  # Bar colors for each category
+        )
+        dev.off()  # Close the PDF device
+      }
+    )
   })
 }
 
-
-# Run the application
-shinyApp(ui = ui, server = server)
+# Run the application 
+shinyApp(ui = ui, server = server, options = list(height = 1080))
