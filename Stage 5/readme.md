@@ -1,1 +1,1 @@
-[![Watch the video](https://raw.githubusercontent.com/Tomi-beloved/hackbio-cancer-internship/main/path/to/thumbnail.jpg)](https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)
+[![Watch the video](https://raw.githubusercontent.com/Tomi-beloved/hackbio-cancer-internship/main/Stage 5/thumbnail1.png)](https://raw.githubusercontent.com/Tomi-beloved/hackbio-cancer-internship/main/Stage 5/Project Presentation.MP4)
